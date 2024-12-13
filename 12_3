@@ -1,0 +1,8 @@
+import unittest
+from 12_2 import TestRunner
+calc_test = unittest.TestSuite()
+
+calc_test.addTest(unittest.TestLoader().loadTestsFromTestCase(TestRunner))
+
+runner = unittest.TextTestRunner(verbosity=2)
+runner.run(calc_test)
