@@ -1,0 +1,41 @@
+import logging
+import unittest
+from runer import  Runner as rn
+
+logging.basicConfig(level=logging.INFO, filemode='w', encoding='utf-8', filename='runner_tests.log',format="%(asctime)s | %(levelname)s | %(message)s")
+
+class  TestRunner(unittest.TestCase):
+    is_frozen = False
+    unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
+    def test_walk(self):
+        try:
+            runer = rn('Anton', -10)
+            for i in range(10):
+                runer.walk()
+            self.assertEqual(runer.distance, 50)
+            logging.info(f'Test walk is Anton successfully!')
+        except ValueError:
+            logging.warning('Failed operation! Speed is not normal!', exc_info=True)
+
+    unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
+    def test_run(self):
+        try:
+            runer1 = rn(10)
+            for i in range(10):
+                runer1.run()
+            self.assertEqual(runer1.distance, 100)
+        except TypeError:
+            logging.warning('Failed operation! Name runer is not type str!', exc_info=True)
+
+    unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
+    def test_challenge(self):
+            runer1 = rn('Vladimir')
+            runer2 = rn('Dmitryi')
+            for i in range(10):
+                runer1.walk()
+                runer2.run()
+            self.assertNotEqual(runer1.distance, runer2.distance)
+
+
+if __name__ == '__main__':
+    unittest.main()
