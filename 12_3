@@ -1,8 +1,11 @@
 import unittest
-from 12_2 import TestRunner
-calc_test = unittest.TestSuite()
+from 12_1 import TestRunner
+from 12_2 import TournamentTest
 
-calc_test.addTest(unittest.TestLoader().loadTestsFromTestCase(TestRunner))
+test = unittest.TestSuite()
+
+test.addTest(unittest.TestLoader().loadTestsFromTestCase(TestRunner))
+test.addTest(unittest.TestLoader().loadTestsFromTestCase(TournamentTest))
 
 runner = unittest.TextTestRunner(verbosity=2)
-runner.run(calc_test)
+runner.run(test)
